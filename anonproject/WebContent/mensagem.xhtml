@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:mp="http://primefaces.org/ui/material"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+<h:head>
+	<h:title class="titulo">Anon.proj</h:title>
+	<h:outputStylesheet library="css" name="style.css" />
+	<link rel="icon" type="image/png" href="resources/images/whats.png" />
+	<script type="text/javascript">
+		ion.sound({
+			sounds : [ {
+				name : "beer_can_opening"
+			}, {
+				name : "bell_ring"
+			}, {
+				name : "branch_break"
+			}, {
+				name : "button_click"
+			} ],
+
+			// main config
+			path : "../../../WebContent/resouces/sounds",
+			preload : true,
+			multiplay : true,
+			volume : 0.9
+		});
+
+		// play sound
+		ion.sound.play("button_click");
+
+		// 		var intervalo = setInterval(
+		// 				"document.getElementById('data_list').scrollTop = 1000000;", 1);
+
+		function goFocus(inputEnv) {
+			document.getElementById(inputEnv).focus();
+		}
+
+		// 		setInterval(function() {
+		// 			var rolagemTop = $("#data_list").scrollTop();
+
+		// 			if (rolagemTop == 0) {
+		// 				$("#data_list").animate({
+		// 					scrollTop : $("#data_list").height()
+		// 				}, 'slow');
+		// 			}
+		// 		}, 1);
+	</script>
+</h:head>
+
+<h:body>
+	<ui:composition template="login.xhtml">
+		<ui:define name="conteudo">
+			<!-- MENU -->
+			<h:form styleClass="menu">
+				<p:menubar>
+					<p:menuitem value="Usuario: #{loginMb.usuario.usuario}"
+						disabled="true" />
+
+					<p:menuitem value="Logout" icon="ui-icon-extlink"
+						action="#{loginMb.logout}" />
+				</p:menubar>
+			</h:form>
+
+			<!-- 	MENSAGENS -->
+
+			<h:form id="data" styeClass="msgForm">
+				<div class="scroll" id="data_list">
+					<ui:repeat value="#{mensagemBean.lista}" var="msg">
+						<br />
+						<h:outputText
+							style="Color: Blue; font-weight: bold; font-seize:40px;"
+							value="#{msg.usuario}: " />
+						<h:outputText style="Color: Red; font-seize:40px;"
+							value="#{msg.mensagem}" />
+
+						<h:outputText value=" #{msg.horaEnvio}" />
+					</ui:repeat>
+				</div>
+				<p:poll interval="3" listener="#{mensagemBean.atualizaMensagem}"
+					update="data" />
+				<p:growl id="growl" showDetail="true" sticky="true" />
+
+			</h:form>
+
+			<p:panelGrid columns="1" styleClass="usuariosList">
+				<h:form>
+					<h3>Usuários Logados</h3>
+					<ui:repeat value="#{loginMb.usuariosLogados}" var="usu">
+						<h:outputText
+							style="Color: Blue; font-weight: bold; font-seize:40px; text-align:center;"
+							value="#{usu.usuario}" />
+						<br />
+					</ui:repeat>
+				</h:form>
+			</p:panelGrid>
+
+			<!-- INPUT MENSAGEM! -->
+
+			<h:form class="msgEnvia">
+				<h2>Envie a Mensagem</h2>
+
+				<p:inputText rows="6" cols="33" styleClass="inputEnv"
+					name="inputEnv" a:autofocus="true" id="inputEnv" required="true"
+					requiredMessage="O campo Mensagem não pode estar vazio!"
+					value="#{mensagemBean.mensagem.mensagem}" />
+
+				<p:commandButton styleClass="butEnv" update="@form" value="Enviar"
+					icon="ui-icon-circle-triangle-e"
+					action="#{mensagemBean.enviarMensagem}" onclick="inputMsg"></p:commandButton>
+			</h:form>
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+
+</html>

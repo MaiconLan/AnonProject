@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:mp="http://primefaces.org/ui/material"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
+	<title>Login</title>
+	<link rel="icon" type="image/png" href="resources/images/whats.png" />
+	<h:outputStylesheet library="css" name="style.css" />
+</h:head>
+<h:body>
+	<ui:insert name="conteudo">
+		<h:form styleClass="paglogin">
+			<h1>Login</h1>
+			<p:messages id="messages" />
+			<p:panelGrid columns="2">
+				<p:outputLabel for="Login" value="Login:" />
+				<p:inputText id="Login" value="#{loginMb.user}" required="true"
+					a:autofocus="true" requiredMessage="Campo login obrigatório" />
+
+				<p:outputLabel for="senha" value="Senha:" />
+				<p:password id="senha" value="#{loginMb.pass}" required="true"
+					requiredMessage="Campo senha obrigatório" />
+
+				<p:commandButton value="Login" icon="ui-icon-star"
+					action="#{loginMb.isValido()}" ajax="false">
+				</p:commandButton>
+
+				<h:link value="Efetuar Cadastro" outcome="cadastroUsuario.xhtml" />
+
+			</p:panelGrid>
+		</h:form>
+	</ui:insert>
+
+	<div class="footer">Versão: 2.2</div>
+</h:body>
+</html>

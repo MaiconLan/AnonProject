@@ -1,0 +1,197 @@
+@font-face {
+	font-family: "roboto";
+	src: url("../resources/font/roboto-slab.regular.ttf") format("truetype");
+}
+
+#wrap {
+	margin: 0 auto;
+	width: 800px;
+	min-height: 600px;
+	box-shadow: 0px 0px 3px;
+	padding: 15px;
+	background-image: url("../resources/images/desfoque2.png");
+}
+
+#logo {
+	background-image: url("../resources/images/logo.png");
+}
+
+body {
+	background-image: url("../resources/images/fundo.png");
+	background-repeat: repeat;
+	background-attachment: scroll;
+	background-position: center;
+	color: white;
+}
+
+.btn .ui-state-default .ui-panelgrid .ui-widget-content .ui-state-default .ui-widget-header .ui-state-default
+	{
+	background-color: #EEEEEE;
+	background: none;
+}
+
+.btn {
+	height: 300px;
+	width: 190px;
+	background-color: #EEEEEE;
+	border: none;
+	box-shadow: 0 5px #4DA6FF;
+	font-family: Roboto;
+}
+
+.btn:hover {
+	background-color: #4DA6FF;
+	box-shadow: 0 5px #006DD9;
+	color: white;
+}
+
+.btn:active {
+	position: relative;
+	top: 5px;
+	box-shadow: none;
+}
+
+.cao {
+	margin-left: -11px;
+	margin-top: -10px;
+}
+
+.scroll {
+	background-color: white;
+	box-shadow: 0 5px #006DD9;
+	color: #4DA6FF;
+	overflow-y: auto;
+}
+
+#header {
+	margin: 0 auto;
+	width: 855px;
+}
+
+.paglogin {
+	position: absolute;
+	top: 50%;
+	left: 45%;
+	transform: translateX(-50%);
+	margin-top: -100px;
+}
+
+.msgForm {
+	position: relative;
+	top: 55%;
+	left: 45%;
+	transform: translateX(-50%);
+	margin-top: -100px;
+	border: 5px cyan;
+}
+
+.msgEnvia {
+	position: absolute;
+	width: 70%;
+	top: 75%;
+	left: 45%;
+	transform: translateX(-50%);
+	margin-top: -100px;
+}
+
+.butEnv {
+	left: 3%;
+}
+
+.inputEnv {
+	width: 40%;
+	height: 30px;
+}
+
+.pagCadastro {
+	position: absolute;
+	top: 55%;
+	left: 50%;
+	transform: translateX(-50%);
+	margin-top: -100px;
+}
+
+#header .ui-widget {
+	background-position: center;
+}
+
+.footer {
+	margin: 0 auto;
+	width: 98%;
+	height: 25px;
+	border-style: outset;
+	margin-top: 20px;
+	position: absolute;
+	text-align: center;
+	bottom: 0;
+	background-image: url("../resources/images/desfoque2.png");
+}
+
+.menuzao {
+	
+}
+
+* {
+	text-decoration: none;
+	font-family: "Roboto";
+}
+
+.slogan {
+	text-color: gray;
+	font-size: 13px;
+}
+
+form {
+	font-size: 14px;
+	margin-left: 20px;
+}
+
+.Login {
+	margin-left: 525px;
+}
+
+.ui-inputfield {
+	border: 1px solid gray;
+	box-shadow: none;
+}
+
+.Logoff {
+	
+}
+
+h2, h1, h2 {
+	margin-left: 20px;
+}
+
+a {
+	text-decoration: none;
+	color: white;
+}
+
+.articles {
+	margin-left: 20px;
+}
+
+.vindo {
+	margin-left: 240px;
+}
+
+.scroll {
+	display: block;
+	position: absolute;
+	width: 50%; /* Optional, depends otherwise on parent. */
+	height: 300px;
+	overflow: auto;
+	color: green;
+}
+
+.msgUsuario {
+	color: #ff0000;
+}
+
+.usuariosList {
+	position: relative;
+	float: right;
+	top: 10%;
+	border: 5px cyan;
+}

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>White and Gray</title>
+	<meta http-equiv="Content-Language" content="English" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet library="css" name="style.css" />
+</h:head>
+<h:body>
+
+	<div id="wrap">
+
+		<div id="header">
+			<h1>
+				<a href="home.xhtml">Escola Silvio Santos</a>
+			</h1>
+			<h2>25 anos construindo o futuro!</h2>
+			 
+			<h:form>
+    			<p:growl id="messages" autoUpdate="true" showDetail="true"/>
+ 
+    			<p:menuButton value="Sobre">
+	        		<p:menuitem value="A Escola" url="escola.xhtml" update="messages" icon="ui-icon-bookmark"/>
+	        		<p:menuitem value="O Fundador" url="fundador.xhtml" update="messages" icon="ui-icon-person"/>
+    			</p:menuButton>
+    			
+    			<p:menuButton value="Sistema">
+	        		<p:menuitem value="Alunos" url="aluno.xhtml" update="messages" icon="ui-icon-person"/>
+	        		<p:menuitem value="Matérias" url="materia.xhtml" update="messages" icon="ui-icon-script"/>
+	        		<p:menuitem value="Professores" url="professor.xhtml" update="messages"  icon="ui-icon-person"/>
+	        		<p:menuitem value="Turmas" url="turma.xhtml" update="messages" icon="ui-icon-home;"/>
+	        		<p:menuitem value="Matrículas" url="matricula.xhtml" update="messages" icon="ui-icon-check"/>
+    			</p:menuButton>
+    			
+    			<p:menuButton value="Fotos">
+        			<p:menuitem value="Galeria de Fotos" url="foto.xhtml" update="messages" icon="ui-icon-disk"/>
+    			</p:menuButton>
+    			 
+    		<a href="contato.xhtml"><p:button  value="Contato">
+			</p:button></a>	
+    			
+			</h:form> 
+		</div>
+
+		
+		<div class="left">
+		<ui:insert name="conteudo">
+		
+			<h2>
+				<a href="#">License and terms of use</a>
+			</h2>
+			<div class="articles">
+				White and Gray is a CSS template that is free and fully standards
+				compliant. <a href="http://www.free-css-templates.com/">Free CSS
+					templates</a> designed this template. This template is allowed for all
+				uses, including commercial use, as it is released under the <strong>Creative
+					Commons Attributions 2.5</strong> license. The only stipulation to the use
+				of this free template is that the links appearing in the footer
+				remain intact. Beyond that, simply enjoy and have fun with it! <br />
+				<br /> <img src="/AplicacaoSimplesJSF/resources/images/pic.jpg" alt="Example pic"
+					style="border: 3px solid #ccc;" /> <br />
+				<br /> Donec nulla. Aenean eu augue ac nisl tincidunt rutrum. Proin
+				erat justo, pharetra eget, posuere at, malesuada et, nulla. Donec
+				pretium nibh sed est faucibus suscipit. Nunc nisi. Nullam vehicula.
+				In ipsum lorem, bibendum sed, consectetuer et, gravida id, erat. Ut
+				imperdiet, leo vel condimentum faucibus, risus justo feugiat purus,
+				vitae congue nulla diam non urna.
+			</div>
+			<h2>
+				<a href="#">Title with a link - Example of heading 2</a>
+			</h2>
+			<div class="articles">Donec nulla. Aenean eu augue ac nisl
+				tincidunt rutrum. Proin erat justo, pharetra eget, posuere at,
+				malesuada et, nulla. Donec pretium nibh sed est faucibus suscipit.
+				Nunc nisi. Nullam vehicula. In ipsum lorem, bibendum sed,
+				consectetuer et, gravida id, erat. Ut imperdiet, leo vel condimentum
+				faucibus, risus justo feugiat purus, vitae congue nulla diam non
+				urna.</div>
+		</ui:insert>
+		</div>
+
+		<div class="right">
+
+			<h2>Categorias :</h2>
+			<ul>
+				<li><a href="biblioteca.xhtml">Biblioteca</a></li>
+				<li><a href="avisos.xhtml">Mural de avisos</a></li>
+				
+			</ul>
+
+
+
+		</div>
+		<div style="clear: both;"></div>
+
+
+
+		<div id="footer">
+			    Escola Silvio Santos 
+		</div>
+	</div>
+	
+
+</h:body>
+</html>
