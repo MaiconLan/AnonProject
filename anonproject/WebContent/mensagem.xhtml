@@ -11,6 +11,7 @@
 <h:head>
 	<h:title class="titulo">Anon.proj</h:title>
 	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputStylesheet library="awesome/css" name="font-awesome.css" />
 	<link rel="icon" type="image/png" href="resources/images/whats.png" />
 	<script type="text/javascript">
 		ion.sound({
@@ -56,26 +57,25 @@
 <h:body>
 	<ui:composition template="login.xhtml">
 		<ui:define name="conteudo">
+
 			<!-- MENU -->
 			<h:form styleClass="menu">
 				<p:menubar>
-					<p:menuitem value="Usuario: #{loginMb.usuario.usuario}"
+					<p:menuitem id="logout" value="Logout"
+						icon="fa fa-fw fa-times-circle" action="#{loginMb.logout}" />
+					<p:menuitem value="Usuario: #{loginMb.usuario.nome}"
 						disabled="true" />
-
-					<p:menuitem value="Logout" icon="ui-icon-extlink"
-						action="#{loginMb.logout}" />
 				</p:menubar>
 			</h:form>
 
-			<!-- 	MENSAGENS -->
-
+			<!--  VER MENSAGENS -->
 			<h:form id="data" styeClass="msgForm">
 				<div class="scroll" id="data_list">
 					<ui:repeat value="#{mensagemBean.lista}" var="msg">
 						<br />
 						<h:outputText
 							style="Color: Blue; font-weight: bold; font-seize:40px;"
-							value="#{msg.usuario}: " />
+							value="#{msg.nomeUsuario}: " />
 						<h:outputText style="Color: Red; font-seize:40px;"
 							value="#{msg.mensagem}" />
 
@@ -85,38 +85,48 @@
 				<p:poll interval="3" listener="#{mensagemBean.atualizaMensagem}"
 					update="data" />
 				<p:growl id="growl" showDetail="true" sticky="true" />
-
 			</h:form>
 
-			<p:panelGrid columns="1" styleClass="usuariosList">
-				<h:form>
+			<!-- 	USUARIOS LOGADOS -->
+			<h:form id="usuariosLogados">
+				<p:panelGrid columns="1" styleClass="usuariosList">
 					<h3>Usuários Logados</h3>
 					<ui:repeat value="#{loginMb.usuariosLogados}" var="usu">
 						<h:outputText
-							style="Color: Blue; font-weight: bold; font-seize:40px; text-align:center;"
-							value="#{usu.usuario}" />
+							style="Color:#{usu.cor}; font-weight: bold; font-seize:40px; border: 1px white; text-align:center;"
+							value="#{usu.status}" />
+
+						<h:outputText
+							style="Color: white; font-weight: bold; font-seize:40px; text-align:center;"
+							value=" - #{usu.nome}" />
 						<br />
 					</ui:repeat>
-				</h:form>
-			</p:panelGrid>
+				</p:panelGrid>
+				<p:poll interval="1" listener="#{loginMb.atualizaUsuarios}"
+					update="usuariosLogados " />
+			</h:form>
 
-			<!-- INPUT MENSAGEM! -->
-
+			<!-- ENVIAR MENSAGEM! -->
 			<h:form class="msgEnvia">
-				<h2>Envie a Mensagem</h2>
+				<p:selectBooleanButton value="#{loginMb.checkStatus}" onLabel="Ausente" immediate="true"
+					offLabel="Online" onIcon="fa fa-fw fa-meh-o"
+					offIcon="fa fa-fw fa-smile-o" style="width:110px">
+					<p:ajax update="usuariosLogados"
+						listener="#{loginMb.statusUsuario}" />
+				</p:selectBooleanButton>
 
+				<h2>Envie a Mensagem</h2>
 				<p:inputText rows="6" cols="33" styleClass="inputEnv"
 					name="inputEnv" a:autofocus="true" id="inputEnv" required="true"
 					requiredMessage="O campo Mensagem não pode estar vazio!"
 					value="#{mensagemBean.mensagem.mensagem}" />
 
 				<p:commandButton styleClass="butEnv" update="@form" value="Enviar"
-					icon="ui-icon-circle-triangle-e"
-					action="#{mensagemBean.enviarMensagem}" onclick="inputMsg"></p:commandButton>
+					icon="fa fa-fw fa-send-o" action="#{mensagemBean.enviarMensagem}"
+					onclick="inputMsg"></p:commandButton>
 			</h:form>
-
 		</ui:define>
 	</ui:composition>
-</h:body>
 
+</h:body>
 </html>

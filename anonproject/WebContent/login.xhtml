@@ -7,35 +7,42 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:mp="http://primefaces.org/ui/material"
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
 <h:head>
-	<title>Login</title>
+	<title>AnonProj</title>
 	<link rel="icon" type="image/png" href="resources/images/whats.png" />
 	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputStylesheet library="awesome/css" name="font-awesome.css" />
 </h:head>
+
 <h:body>
 	<ui:insert name="conteudo">
+		<h1 class="title">Anon.Project</h1>
+		<h2 class="subtitle">Welcome to our spot.</h2>
+
 		<h:form styleClass="paglogin">
-			<h1>Login</h1>
 			<p:messages id="messages" />
+			<h1>Login</h1>
+			
 			<p:panelGrid columns="2">
 				<p:outputLabel for="Login" value="Login:" />
 				<p:inputText id="Login" value="#{loginMb.user}" required="true"
 					a:autofocus="true" requiredMessage="Campo login obrigatório" />
 
-				<p:outputLabel for="senha" value="Senha:" />
-				<p:password id="senha" value="#{loginMb.pass}" required="true"
+				<p:outputLabel for="Senha" value="Senha:" />
+				<p:password id="Senha" value="#{loginMb.pass}" required="true"
 					requiredMessage="Campo senha obrigatório" />
 
-				<p:commandButton value="Login" icon="ui-icon-star"
+				<p:commandButton value="Login" icon="fa fa-fw fa-chevron-circle-right"
 					action="#{loginMb.isValido()}" ajax="false">
 				</p:commandButton>
 
-				<h:link value="Efetuar Cadastro" outcome="cadastroUsuario.xhtml" />
-
+				<h:link id="cadastrar" value="Efetuar Cadastro"
+					outcome="cadastroUsuario.xhtml" />
 			</p:panelGrid>
 		</h:form>
 	</ui:insert>
 
-	<div class="footer">Versão: 2.2</div>
+	<div class="footer">Versão: 3.2</div>
 </h:body>
 </html>

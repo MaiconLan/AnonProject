@@ -1,54 +1,73 @@
+/*
+ * Decompiled with CFR 0_118.
+ */
 package model;
 
 public class Usuario {
+    private Long idUsuario;
+    private String nome;
+    private String login;
+    private String senha;
+    private String status;
+    private String cor;
 
-	private Long idUsuario;
-	private String usuario;
-	private String senha;
-	private String status;
+    public Usuario() {
+    }
 
-	public Usuario() {
-		super();
-	}
+    public Usuario(Long idUsuario, String login, String senha, String status, String cor, String nome) {
+        this.idUsuario = idUsuario;
+        this.login = login;
+        this.senha = senha;
+        this.status = status;
+        this.cor = cor;
+        this.nome = nome;
+    }
 
-	public Usuario(Long idUsuario, String usuario, String senha, String status) {
-		super();
-		this.idUsuario = idUsuario;
-		this.usuario = usuario;
-		this.senha = senha;
-		this.status = status;
-	}
+    public Long getIdUsuario() {
+        return this.idUsuario;
+    }
 
-	public Long getIdUsuario() {
-		return idUsuario;
-	}
+    public void setIdUsuario(Long idUsuario) {
+        this.idUsuario = idUsuario;
+    }
 
-	public void setIdUsuario(Long idUsuario) {
-		this.idUsuario = idUsuario;
-	}
+    public String getLogin() {
+        return this.login;
+    }
 
-	public String getUsuario() {
-		return usuario;
-	}
+    public void setLogin(String login) {
+        this.login = login;
+    }
 
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
-	}
+    public String getSenha() {
+        return this.senha;
+    }
 
-	public String getSenha() {
-		return senha;
-	}
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
 
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
+    public String getStatus() {
+        return this.status;
+    }
 
-	public String getStatus() {
-		return status;
-	}
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
+    public String getCor() {
+        return this.cor;
+    }
 
+    public void setCor(String cor) {
+        this.cor = cor;
+    }
+
+    public String getNome() {
+        return this.nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 }

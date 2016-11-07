@@ -1,78 +1,76 @@
+/*
+ * Decompiled with CFR 0_118.
+ */
 package model;
 
 import java.sql.Time;
-import java.sql.Timestamp;
 import java.util.Date;
 
 public class Mensagem {
+    private Long idMensagem;
+    private String mensagem;
+    private String nomeUsuario;
+    private String senha;
+    private Date dataEnvio;
+    private Time HoraEnvio;
 
-	private Long idMensagem;
-	private String mensagem;
-	private String usuario;
-	private String senha;
-	private Date dataEnvio;
-	private Time HoraEnvio;
+    public Mensagem() {
+    }
 
-	public Mensagem() {
+    public Mensagem(Long idMensagem, String mensagem, String nomeUsuario, String senha, Date dataEnvio, Time horaEnvio) {
+        this.idMensagem = idMensagem;
+        this.mensagem = mensagem;
+        this.nomeUsuario = nomeUsuario;
+        this.senha = senha;
+        this.dataEnvio = dataEnvio;
+        this.HoraEnvio = horaEnvio;
+    }
 
-	}
+    public Long getIdMensagem() {
+        return this.idMensagem;
+    }
 
-	public Mensagem(Long idMensagem, String mensagem, String usuario, String senha, Date dataEnvio, Time horaEnvio) {
-		super();
-		this.idMensagem = idMensagem;
-		this.mensagem = mensagem;
-		this.usuario = usuario;
-		this.senha = senha;
-		this.dataEnvio = dataEnvio;
-		HoraEnvio = horaEnvio;
-	}
+    public void setIdMensagem(Long idMensagem) {
+        this.idMensagem = idMensagem;
+    }
 
-	public Long getIdMensagem() {
-		return idMensagem;
-	}
+    public String getMensagem() {
+        return this.mensagem;
+    }
 
-	public void setIdMensagem(Long idMensagem) {
-		this.idMensagem = idMensagem;
-	}
+    public void setMensagem(String mensagem) {
+        this.mensagem = mensagem;
+    }
 
-	public String getMensagem() {
-		return mensagem;
-	}
+    public String getNomeUsuario() {
+        return this.nomeUsuario;
+    }
 
-	public void setMensagem(String mensagem) {
-		this.mensagem = mensagem;
-	}
+    public void setNomeUsuario(String nomeUsuario) {
+        this.nomeUsuario = nomeUsuario;
+    }
 
-	public String getUsuario() {
-		return usuario;
-	}
+    public String getSenha() {
+        return this.senha;
+    }
 
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
-	}
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
 
-	public String getSenha() {
-		return senha;
-	}
+    public Date getDataEnvio() {
+        return this.dataEnvio;
+    }
 
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
+    public void setDataEnvio(Date dataEnvio) {
+        this.dataEnvio = dataEnvio;
+    }
 
-	public Date getDataEnvio() {
-		return dataEnvio;
-	}
+    public Time getHoraEnvio() {
+        return this.HoraEnvio;
+    }
 
-	public void setDataEnvio(Date dataEnvio) {
-		this.dataEnvio = dataEnvio;
-	}
-
-	public Time getHoraEnvio() {
-		return HoraEnvio;
-	}
-
-	public void setHoraEnvio(Time horaEnvio) {
-		HoraEnvio = horaEnvio;
-	}
-
+    public void setHoraEnvio(Time horaEnvio) {
+        this.HoraEnvio = horaEnvio;
+    }
 }

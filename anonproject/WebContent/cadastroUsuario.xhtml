@@ -10,41 +10,47 @@
 <h:head>
 	<title>Cadastro de Usuário</title>
 	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputStylesheet library="awesome/css" name="font-awesome.css" />
 	<link rel="icon" type="image/png" href="resources/images/whats.png" />
 </h:head>
-	<ui:composition template="login.xhtml">
-		<ui:define name="conteudo">
+<ui:composition template="login.xhtml">
+	<ui:define name="conteudo">
 
-			<p:menubar>
-				<p:menuitem value="Login" url="login.xhtml" />
-			</p:menubar>
-			<br />
-			
-			<h:form styleClass="pagCadastro">
-				<h2>Cadastrar</h2>
-				<f:metadata>
-					<f:viewParam name="id" value="#{userBean.usuario.idUsuario}" />
-					<f:event type="preRenderView" listener="#{userBean.carregar(id)}" />
-				</f:metadata>
+		<p:menubar>
+			<p:menuitem value="Login" url="login.xhtml" />
+		</p:menubar>
+		<br />
 
-				<p:growl id="growl" showDetail="false" sticky="false" />
-				<h:panelGrid columns="2">
+		<h:form styleClass="pagCadastro">
+			<h2>Cadastro de Usuário</h2>
+			<f:metadata>
+				<f:viewParam name="id" value="#{userBean.usuario.idUsuario}" />
+				<f:event type="preRenderView" listener="#{userBean.carregar(id)}" />
+			</f:metadata>
 
-					<p:outputLabel id="login" value="Usuario: " />
-					<p:inputText for="login" value="#{userBean.usuario.usuario}"
-						a:autofocus="true" required="true"
-						requiredMessage="O campo Usuário é obrigatório" />
+			<p:panelGrid columns="2">
+				<p:outputLabel id="login" for="login" value="Login: " />
+				<p:inputText for="login" value="#{userBean.usuario.login}"
+					required="true" requiredMessage="O campo Login é obrigatório"
+					a:autofocus="true" />
 
-					<p:outputLabel id="senha" value="Senha: " />
-					<p:password for="senha" value="#{userBean.usuario.senha}"
-						feedback="true" required="true"
-						requiredMessage="O campo Senha é obrigatório" />
-					<p:outputLabel />
-					<br />
-					<p:commandButton id="save" update="@form" value="Cadastrar"
-						action="#{userBean.salvar}"></p:commandButton>
-				</h:panelGrid>
-			</h:form>
-		</ui:define>
-	</ui:composition>
+				<p:outputLabel id="nome" for="nome" value="Nome: " />
+				<p:inputText for="nome" value="#{userBean.usuario.nome}"
+					required="true" requiredMessage="O campo Nome é obrigatório"
+					a:autofocus="true" />
+
+				<p:outputLabel for="senha" value="Senha: " />
+				<p:password id="senha" for="senha" value="#{userBean.usuario.senha}"
+					feedback="false" required="true"
+					requiredMessage="O campo Senha é obrigatório" />
+
+				<p:commandButton id="save" update="@form" value="Cadastrar"
+					icon="fa fa-fw fa-user" action="#{userBean.salvar}" />
+
+				<p:outputLabel value=" " />
+			</p:panelGrid>
+
+		</h:form>
+	</ui:define>
+</ui:composition>
 </html>

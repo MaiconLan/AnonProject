@@ -1,111 +1,102 @@
+/*
+ * Decompiled with CFR 0_118.
+ * 
+ * Could not load the following classes:
+ *  dao.UsuarioDAO
+ *  javax.faces.application.FacesMessage
+ *  javax.faces.bean.ManagedBean
+ *  javax.faces.bean.ViewScoped
+ *  javax.faces.context.ExternalContext
+ *  javax.faces.context.FacesContext
+ *  model.Usuario
+ */
 package bean;
 
+import dao.UsuarioDAO;
 import java.io.IOException;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
-
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-
 import model.Usuario;
-import dao.UsuarioDAO;
 
-@ManagedBean(name = "userBean")
+@ManagedBean(name="userBean")
 @ViewScoped
-public class UsuarioBean implements Serializable {
+public class UsuarioBean
+implements Serializable {
+    private static final long serialVersionUID = 1;
+    private Usuario usuario;
+    private List<Usuario> lista;
+    private UsuarioDAO dao;
+    private String pass;
 
-	private static final long serialVersionUID = 1L;
-	private Usuario usuario;
-	private List<Usuario> lista;
-	private UsuarioDAO dao;
-	private String pass;
+    @PostConstruct
+    public void postConstruct() {
+        this.dao = new UsuarioDAO();
+        this.usuario = new Usuario();
+    }
 
-	@PostConstruct
-	public void postConstruct() {
-		this.dao = new UsuarioDAO();
-		this.usuario = new Usuario();
-//		try {
-//			this.lista = dao.listarUsuario();
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-	}
+    public void salvar() {
+        try {
+            if (this.usuario.getIdUsuario() == null) {
+                this.dao.inserirUsuario(this.usuario);
+                FacesContext context = FacesContext.getCurrentInstance();
+                context.addMessage(null, new FacesMessage("Cadastrado com sucesso", "Seu registro foi cadastrado"));
+                FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");
+            }
+            this.usuario = new Usuario();
+            this.lista = this.dao.listarUsuario();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
-	public void salvar() {
-		try {
-			if (this.usuario.getIdUsuario() == null) {
-				this.dao.inserirUsuario(usuario);
+    public void carregar(Long id) throws SQLException {
+        this.dao.listarUsuario();
+    }
 
-				FacesContext context = FacesContext.getCurrentInstance();
-				context.addMessage(null,
-						new FacesMessage("Cadastrado com sucesso",
-								"Seu registro foi cadastrado"));
-				
-				FacesContext.getCurrentInstance().getExternalContext()
-				.redirect("login.xhtml");
-			}
+    public static long getSerialversionuid() {
+        return 1;
+    }
 
-			else {
-			//	this.dao.editaUsuario(usuario);
-			//	FacesContext context = FacesContext.getCurrentInstance();
-			//	context.addMessage(null, new FacesMessage(
-			//			"Editado com sucesso", "Seu registro foi editado"));
-			}
+    public Usuario getUsuario() {
+        return this.usuario;
+    }
 
-			this.usuario = new Usuario();
-			this.lista = dao.listarUsuario();
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	public void carregar(Long id) throws SQLException {
-		this.dao.listarUsuario();
-	}
+    public List<Usuario> getLista() {
+        return this.lista;
+    }
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
+    public void setLista(List<Usuario> lista) {
+        this.lista = lista;
+    }
 
-	public Usuario getUsuario() {
-		return usuario;
-	}
+    public UsuarioDAO getDao() {
+        return this.dao;
+    }
 
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
+    public void setDao(UsuarioDAO dao) {
+        this.dao = dao;
+    }
 
-	public List<Usuario> getLista() {
-		return lista;
-	}
+    public String getPass() {
+        return this.pass;
+    }
 
-	public void setLista(List<Usuario> lista) {
-		this.lista = lista;
-	}
-
-	public UsuarioDAO getDao() {
-		return dao;
-	}
-
-	public void setDao(UsuarioDAO dao) {
-		this.dao = dao;
-	}
-
-	public String getPass() {
-		return pass;
-	}
-
-	public void setPass(String pass) {
-		this.pass = pass;
-	}
-
+    public void setPass(String pass) {
+        this.pass = pass;
+    }
 }

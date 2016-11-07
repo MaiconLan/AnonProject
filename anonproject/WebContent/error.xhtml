@@ -10,25 +10,26 @@
 <h:head>
 	<title>Erro 404</title>
 	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputStylesheet library="awesome/css" name="font-awesome.css" />
 	<link rel="icon" type="image/png" href="resources/images/whats.png" />
 	<script type="text/javascript">
 		function Redirect() {
-			location.href = " login.xhtml"
+			location.href = "login.xhtml"
 		}
 	</script>
 </h:head>
-<h:body>
+<ui:composition template="login.xhtml">
+	<ui:define name="conteudo">
 
-	<h:form styleClass="paglogin">
-		<p:messages id="messages" />
+		<h:form styleClass="paglogin">
+			<p:messages id="messages" />
 
-		<p:panelGrid columns="1">
-			<h:outputText value="Página não Encontrada" />
-			<h:outputText value="Clique no botão para voltar para o Login" />
-			<p:commandButton onclick="Redirect()" value="Login" />
-		</p:panelGrid>
-	</h:form>
-
-	<div class="footer">Versão: 2.1</div>
-</h:body>
+			<p:panelGrid columns="1">
+				<h:link
+					value="Página não Encontrada, clique aqui para voltar para o Login"
+					outcome="login.xhtml" />
+			</p:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
 </html>
