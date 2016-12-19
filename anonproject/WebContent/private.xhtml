@@ -12,22 +12,52 @@
 	<h:title class="titulo">Anon.proj</h:title>
 	<h:outputStylesheet library="css" name="style.css" />
 	<h:outputStylesheet library="awesome/css" name="font-awesome.css" />
-	<link rel="icon" type="image/png" href="resources/images/icon.png" />
+	<link rel="icon" type="image/png" href="resources/images/whats.png" />
 	<script type="text/javascript">
+		ion.sound({
+			sounds : [ {
+				name : "beer_can_opening"
+			}, {
+				name : "bell_ring"
+			}, {
+				name : "branch_break"
+			}, {
+				name : "button_click"
+			} ],
+
+			// main config
+			path : "../../../WebContent/resouces/sounds",
+			preload : true,
+			multiplay : true,
+			volume : 0.9
+		});
+
+		// play sound
+		ion.sound.play("button_click");
+
+		// 		var intervalo = setInterval(
+		// 				"document.getElementById('data_list').scrollTop = 1000000;", 1);
+
 		function goFocus(inputEnv) {
 			document.getElementById(inputEnv).focus();
 		}
 
-		function PlaySound() {
-			var nt = document.getElementById(notify);
-			nt.play();
-		}
+		// 		setInterval(function() {
+		// 			var rolagemTop = $("#data_list").scrollTop();
+
+		// 			if (rolagemTop == 0) {
+		// 				$("#data_list").animate({
+		// 					scrollTop : $("#data_list").height()
+		// 				}, 'slow');
+		// 			}
+		// 		}, 1);
 	</script>
 </h:head>
 
 <h:body>
 	<ui:composition template="login.xhtml">
 		<ui:define name="conteudo">
+
 			<!-- MENU -->
 			<h:form styleClass="menu">
 				<p:menubar>
@@ -36,13 +66,6 @@
 					<p:menuitem value="Usuario: #{loginMb.usuario.nome}"
 						disabled="true" />
 				</p:menubar>
-				<p:growl id="growl" showDetail="true" sticky="true" />
-				<p:idleMonitor timeout="300000">
-					<p:ajax event="idle" listener="#{mensagemBean.onIdle}"
-						update="growl" />
-					<p:ajax event="active" listener="#{mensagemBean.onActive}"
-						update="growl" />
-				</p:idleMonitor>
 			</h:form>
 
 			<!--  VER MENSAGENS -->
@@ -59,7 +82,8 @@
 					</ui:repeat>
 				</div>
 				<p:poll interval="2" listener="#{mensagemBean.atualizaMensagem}"
-					update="@form" widgetVar="PlaySound()" onsuccess="PlaySound()" />
+					update="data" />
+				<p:growl id="growl" showDetail="true" sticky="true" />
 			</h:form>
 
 			<!-- 	USUARIOS LOGADOS -->
@@ -67,32 +91,12 @@
 				<p:panelGrid columns="1" styleClass="usuariosList">
 					<h3>Usuários Logados</h3>
 					<ui:repeat value="#{loginMb.usuariosLogados}" var="usu">
-						<h:outputText
-							style="Color:#{usu.cor}; font-weight: bold; font-seize:40px; border: 1px white; text-align:center;"
-							value="#{usu.status}" />
-
-						<h:outputText
-							style="Color: white; font-weight: bold; font-seize:40px; text-align:center;"
-							value=" - #{usu.nome}" />
+						<h:outputText value="Usuários Conectados:#{usuarioListener.usuarios}"/>
 						<br />
 					</ui:repeat>
 				</p:panelGrid>
 				<p:poll interval="2" listener="#{loginMb.atualizaUsuarios}"
-					update="@form" />
-			</h:form>
-
-			<!-- Patch Notes -->
-			<h:form>
-				<p:dialog header="Patch Notes" widgetVar="dlg" minimizable="true"
-					maximizable="true">
-					<p:panelGrid columns="1">
-						<h3>v3.5</h3>
-						<p:outputLabel value="Adicionada patch notes" />
-						<p:outputLabel
-							value="Melhorado desempenho, não pisca ao enviar mensagem" />
-						<p:outputLabel value="Adicionado comandos, digite /comandos" />
-					</p:panelGrid>
-				</p:dialog>
+					update="usuariosLogados" />
 			</h:form>
 
 			<!-- ENVIAR MENSAGEM! -->
@@ -105,26 +109,20 @@
 						listener="#{loginMb.statusUsuario}" />
 				</p:selectBooleanButton>
 
-				<p:commandButton value="PatchNotes" onclick="PF('dlg').show();"
-					type="button" icon="fa fa-fw fa-comment-o" />
-				<div>
-					<audio id="notify" src="resources/sound/online.wav" />
-				</div>
-
 				<h2>Envie a Mensagem</h2>
 				<p:inputText rows="6" cols="33" styleClass="inputEnv"
 					name="inputEnv" a:autofocus="true" id="inputEnv" required="true"
 					requiredMessage="O campo Mensagem não pode estar vazio!"
-					autocomplete="false" value="#{mensagemBean.mensagem.mensagem}" />
+					value="#{mensagemBean.mensagem.mensagem}" />
 
 				<p:commandButton styleClass="butEnv" update="@form" value="Enviar"
 					icon="fa fa-fw fa-send-o" action="#{mensagemBean.enviarMensagem}"
 					onclick="inputMsg">
 					<f:ajax execute="@form" render="@form :data" />
 				</p:commandButton>
-
 			</h:form>
 		</ui:define>
 	</ui:composition>
+
 </h:body>
 </html>
